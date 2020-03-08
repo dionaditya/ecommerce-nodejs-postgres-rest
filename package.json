@@ -1,0 +1,53 @@
+{
+  "name": "fullstack-apollo-express-postgresql-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "13.5.0"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "test:run-server": "TEST_DATABASE=mytestdatabase npm start",
+    "test:execute-test": "mocha --require @babel/register 'src/**/*.spec.js'",
+    "test": "echo \"No test specified\" && exit 0",
+    "tsc": "tsc"
+  },
+  "keywords": [],
+  "author": "Robin Wieruch <hello@rwieruch.com> (https://www.robinwieruch.de)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "axios": "^0.18.1",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.2",
+    "apollo-server": "^2.2.3",
+    "apollo-server-express": "^2.2.3",
+    "bcrypt": "^3.0.8",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dataloader": "^1.4.0",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-resolvers": "^0.2.2",
+    "jsonwebtoken": "^8.4.0",
+    "knex": "^0.20.10",
+    "multer": "^1.4.2",
+    "pg": "^7.18.1",
+    "redis": "^3.0.2",
+    "slonik": "^22.4.3",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.5",
+    "uuid": "^3.3.2"
+  }
+}
