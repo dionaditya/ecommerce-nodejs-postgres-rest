@@ -7,15 +7,16 @@ const getQueryAllFromDatabase = async query => {
   try {
     const res = await pool.query(query);
     const data = {
-      message: "success",
-      rowCount: res.rowCount,
-      rows: res.rows
+      message: "query success from database",
+      data: [res.rows, res.rowCount],
+      erro: false
     };
     return data;
   } catch (err) {
-    console.log(err)
     return {
-      message: "query failed"
+      message: "query failed",
+      data: null,
+      error: true
     };
   }
 };
@@ -26,14 +27,16 @@ const getQueryFromDatabase = async query => {
         ${query}
     `);
     const data = {
-      message: "query success",
-      rowCount: res.rowCount,
-      rows: res.rows[0]
+      message: "query success from database",
+      data: [res.rows[0], res.rowCount],
+      error: false
     };
     return data;
   } catch (err) {
     return {
-      message: "query failed"
+      message: "query failed",
+      data: null,
+      errro: true
     };
   }
 };
@@ -43,22 +46,25 @@ const postQueryToDatabase = async query => {
     const res = await pool.query(sql`
         ${query}
     `);
-
     if (res.rowCount > 0) {
       const data = {
-        message: "insert success",
-        rowCount: res.rowCount,
-        rows: res.rows[0]
+        message: "insert success to database",
+        data: [res.rows[0], res.rowCount],
+        error: false
       };
       return data;
     } else {
       return {
-        message: "insert failed"
+        message: "insert failed to database",
+        data: null,
+        error: true
       };
     }
   } catch (err) {
     return {
-      message: "insert failed"
+      message: "insert failed to database",
+      data: null,
+      error: true
     };
   }
 };
@@ -68,22 +74,25 @@ const updateQueryToDatabase = async query => {
     const res = await pool.query(sql`
         ${query}
     `);
-
     if (res.rowCount > 0) {
       const data = {
-        message: "update success",
-        rowCount: res.rowCount,
-        rows: res.rows[0]
+        message: "update success to database ",
+        data: [res.rows[0], res.rowCount],
+        error: false
       };
       return data;
     } else {
       return {
-        message: "query failed"
+        message: "update failed to database",
+        data: null,
+        error: true
       };
     }
   } catch (err) {
     return {
-      message: "query failed"
+      message: "update failed to database",
+      data: null,
+      error: true
     };
   }
 };
@@ -93,21 +102,26 @@ const deleteQueryToDatabase = async query => {
     const res = await pool.query(sql`
         ${query}
     `);
-    if (res.rowCount > 0) {
+    console.log(res);
+    if (res.rowCount === 0) {
       const data = {
-        message: "delete success",
-        rowCount: res.rowCount,
-        rows: res.rows[0]
+        message: "delete success to database",
+        data: [res.rows[0], res.rowCount],
+        error: false
       };
       return data;
     } else {
       return {
-        message: "delete failed"
+        message: "delete failed to database",
+        data: null,
+        error: true
       };
     }
   } catch (err) {
     return {
-      message: "delete failed"
+      message: "delete failed to database",
+      data: null,
+      error: true
     };
   }
 };
